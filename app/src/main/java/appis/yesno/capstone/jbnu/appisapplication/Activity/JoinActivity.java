@@ -32,6 +32,7 @@ public class JoinActivity extends AppCompatActivity {
     private SendJsonData sendJsonData;
     private EditText emailText;
     private EditText emailCode;
+    private boolean checkEmailCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class JoinActivity extends AppCompatActivity {
         joinUs = (Button) findViewById(R.id.join_end);
         certificationEmail = (Button) findViewById(R.id.Authentication);
         emailCode = (EditText) findViewById(R.id.edit_check_number);
+        checkEmailCode = false;
 
         /** send mail button add click listener
          */
@@ -102,6 +104,7 @@ public class JoinActivity extends AppCompatActivity {
                         if (ServerRequest.getInstance().getCarNum().equals("200")) {
                             Log.d("CodeCheck", "인증번호 성공");
                             Toast.makeText(getApplicationContext(), "메일 인증 성공.", Toast.LENGTH_LONG).show();
+                            checkEmailCode = true;
                         } else {
                             Log.d("CodeCheck", "인증번호 실패");
                             Toast.makeText(getApplicationContext(), "인증번호가 틀렸습니다.", Toast.LENGTH_LONG).show();
@@ -123,34 +126,40 @@ public class JoinActivity extends AppCompatActivity {
                  *
                  */
                 if (mPasswordView.getText().toString().equals(mPasswordCheckView.getText().toString())) {
-                    sendJsonData = new SendJsonData("joinUs", carNumber.getText().toString(),
-                            Encrypt.encrypt_SHA1(mPasswordView.getText().toString()),
-                            emailText.getText().toString());
-                    Service service = ServiceInfo.createService(Service.class);
-                    Call<ServerRequest> convertedContent = service.request_mailCodeCheck(sendJsonData.returnJson());
-                    convertedContent.enqueue(new Callback<ServerRequest>() {
-                        @Override
-                        public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
-                            Log.d("Response status code: ", String.valueOf(response.code()));
+                    if (checkEmailCode) {
+                        sendJsonData = new SendJsonData("joinUs", carNumber.getText().toString(),
+                                Encrypt.encrypt_SHA1(mPasswordView.getText().toString()),
+                                emailText.getText().toString());
+                        Service service = ServiceInfo.createService(Service.class);
+                        Call<ServerRequest> convertedContent = service.request_mailCodeCheck(sendJsonData.returnJson());
+                        convertedContent.enqueue(new Callback<ServerRequest>() {
+                            @Override
+                            public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
+                                Log.d("Response status code: ", String.valueOf(response.code()));
 
-                            // if parsing the JSON body failed, `response.body()` returns null
-                            ServerRequest.USER_INFO = response.body();
-                            Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                            if (ServerRequest.getInstance().getCarNum().equals("200")) {
-                                Log.d("JoinUs", "회원가입 성공");
-                                Toast.makeText(getApplicationContext(), "회원가입 성공.", Toast.LENGTH_LONG).show();
-                                finish();
-                            } else {
-                                Log.d("JoinUs", "회원가입 실패");
-                                Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_LONG).show();
+                                // if parsing the JSON body failed, `response.body()` returns null
+                                ServerRequest.USER_INFO = response.body();
+                                Log.d("메세지", ServerRequest.getInstance().getCarNum());
+                                if (ServerRequest.getInstance().getCarNum().equals("200")) {
+                                    Log.d("JoinUs", "회원가입 성공");
+                                    Toast.makeText(getApplicationContext(), "회원가입 성공.", Toast.LENGTH_LONG).show();
+                                    checkEmailCode = false;
+                                    finish();
+                                } else {
+                                    Log.d("JoinUs", "회원가입 실패");
+                                    Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_LONG).show();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<ServerRequest> call, Throwable t) {
-                            Log.d("실패", t.getMessage().toString());
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<ServerRequest> call, Throwable t) {
+                                Log.d("실패", t.getMessage().toString());
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getApplicationContext(), "메일인증을 해주세요", Toast.LENGTH_LONG).show();
+                    }
+
                 } else  {
                     Toast.makeText(getApplicationContext(), "비밀번호가 서로 다릅니다.", Toast.LENGTH_LONG).show();
                 }
