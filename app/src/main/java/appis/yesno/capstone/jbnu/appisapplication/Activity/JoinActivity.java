@@ -32,6 +32,7 @@ public class JoinActivity extends AppCompatActivity {
     private SendJsonData sendJsonData;
     private EditText emailText;
     private EditText emailCode;
+    private EditText testtest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
