@@ -3,22 +3,20 @@ package appis.yesno.capstone.jbnu.appisapplication.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
+import android.content.ActivityNotFoundException;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -211,9 +209,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     if (ServerRequest.getInstance().getCarNum().equals("200")) {
                         Log.d("TAG", "로그인 성공");
                         Toast.makeText(getApplicationContext(), "반갑습니다.", Toast.LENGTH_LONG).show();
-                            /** 메인화면으로 넘어가는 부분 필요함
-
+                            /** 메인 메뉴화면으로 넘어가는 부분
                              */
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
                     } else {
                         Log.d("TAG", "아이디비번오류");
                         Toast.makeText(getApplicationContext(), "차량번호 또는 비밀번호를 확인해 주시기바랍니다..", Toast.LENGTH_LONG).show();
