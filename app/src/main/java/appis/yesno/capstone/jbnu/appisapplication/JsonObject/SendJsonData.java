@@ -40,9 +40,10 @@ public class SendJsonData {
         sendJson.addProperty("email", email);
         sendJson.addProperty("code", codeNum);
     }
-    // map ??? 여기에 어떤 정보가 들어가야 할까???
+    // 모든 주차장 위치 요청
     public SendJsonData(String indentify) {
-
+        sendJson = new JsonObject();
+        sendJson.addProperty("identify", "reGeoInfo");
     }
     // car info & send mail
     public SendJsonData(String identify, String carNum) {
@@ -55,6 +56,7 @@ public class SendJsonData {
             sendJson.addProperty("carNum", carNum);
         }
     }
+
     public JsonObject returnJson() {
         return sendJson;
     }

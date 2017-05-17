@@ -57,7 +57,7 @@ public class JoinActivity extends AppCompatActivity {
                  */
                 sendJsonData = new SendJsonData("email", emailText.getText().toString());
                 Service service = ServiceInfo.createService(Service.class);
-                Call<ServerRequest> convertedContent = service.request_sendMail(sendJsonData.returnJson());
+                Call<ServerRequest> convertedContent = service.request(sendJsonData.returnJson());
                 convertedContent.enqueue(new Callback<ServerRequest>() {
                     @Override
                     public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
@@ -77,7 +77,7 @@ public class JoinActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ServerRequest> call, Throwable t) {
-                        Log.d("실패", t.getMessage().toString());
+                        Toast.makeText(getApplicationContext(), "서버연결에 실패 하였습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -92,7 +92,7 @@ public class JoinActivity extends AppCompatActivity {
                  */
                 sendJsonData = new SendJsonData("codeCheck", emailText.getText().toString(), Integer.parseInt(emailCode.getText().toString()));
                 Service service = ServiceInfo.createService(Service.class);
-                Call<ServerRequest> convertedContent = service.request_mailCodeCheck(sendJsonData.returnJson());
+                Call<ServerRequest> convertedContent = service.request(sendJsonData.returnJson());
                 convertedContent.enqueue(new Callback<ServerRequest>() {
                     @Override
                     public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
@@ -113,7 +113,7 @@ public class JoinActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ServerRequest> call, Throwable t) {
-                        Log.d("실패", t.getMessage().toString());
+                        Toast.makeText(getApplicationContext(), "서버연결에 실패 하였습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -131,7 +131,7 @@ public class JoinActivity extends AppCompatActivity {
                                 Encrypt.encrypt_SHA1(mPasswordView.getText().toString()),
                                 emailText.getText().toString());
                         Service service = ServiceInfo.createService(Service.class);
-                        Call<ServerRequest> convertedContent = service.request_mailCodeCheck(sendJsonData.returnJson());
+                        Call<ServerRequest> convertedContent = service.request(sendJsonData.returnJson());
                         convertedContent.enqueue(new Callback<ServerRequest>() {
                             @Override
                             public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
@@ -141,19 +141,16 @@ public class JoinActivity extends AppCompatActivity {
                                 ServerRequest.USER_INFO = response.body();
                                 Log.d("메세지", ServerRequest.getInstance().getCarNum());
                                 if (ServerRequest.getInstance().getCarNum().equals("200")) {
-                                    Log.d("JoinUs", "회원가입 성공");
                                     Toast.makeText(getApplicationContext(), "회원가입 성공.", Toast.LENGTH_LONG).show();
-                                    checkEmailCode = false;
                                     finish();
                                 } else {
-                                    Log.d("JoinUs", "회원가입 실패");
                                     Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_LONG).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<ServerRequest> call, Throwable t) {
-                                Log.d("실패", t.getMessage().toString());
+                                Toast.makeText(getApplicationContext(), "서버연결에 실패 하였습니다.", Toast.LENGTH_LONG).show();
                             }
                         });
                     } else {
