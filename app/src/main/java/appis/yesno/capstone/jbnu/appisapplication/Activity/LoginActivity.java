@@ -166,8 +166,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         passwordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String carNumber = carNumberView.getText().toString();
+        final String carNumber = carNumberView.getText().toString();
         String password = passwordView.getText().toString();
+
 
         boolean cancel = false;
         View focusView = null;
@@ -195,7 +196,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             // 이곳이 로그인 하는곳
-            sendJsonData = new SendJsonData("login", carNumberView.getText().toString(), Encrypt.encrypt_SHA1(passwordView.getText().toString()));
+            sendJsonData = new SendJsonData("login", carNumber, Encrypt.encrypt_SHA1(password));
             Service service = ServiceInfo.createService(Service.class);
             Call<ServerRequest> convertedContent = service.request_login(sendJsonData.returnJson());
             convertedContent.enqueue(new Callback<ServerRequest>() {
@@ -213,6 +214,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                              */
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
+                        Intent intent1 = new Intent(LoginActivity.this, CarInfoActivity.class);
+                        intent1.putExtra("로그인 차량번호", carNumber);
+                        startActivity(intent1);
+
                     } else {
                         Log.d("TAG", "아이디비번오류");
                         Toast.makeText(getApplicationContext(), "차량번호 또는 비밀번호를 확인해 주시기바랍니다..", Toast.LENGTH_LONG).show();

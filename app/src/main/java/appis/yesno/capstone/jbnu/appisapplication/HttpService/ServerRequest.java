@@ -31,6 +31,12 @@ public class ServerRequest {
     private String email;
     @SerializedName("codeNum")
     private String codeNum;
+    @SerializedName("time")
+    private String time;
+    @SerializedName("fee")
+    private int fee;
+    @SerializedName("carInfo")
+    private String carInfo;
 
 
 
@@ -42,6 +48,13 @@ public class ServerRequest {
         this.setIDENTIFY(id);
         this.setCarNum(carNum);
         this.setUserPassword(password_digest);
+    }
+
+    public ServerRequest(String id, String InfoCarNum, String InfoTime, int InfoFee){
+
+        this.setIDENTIFY(id);
+        this.setCarNum(InfoCarNum);
+
     }
 
 
