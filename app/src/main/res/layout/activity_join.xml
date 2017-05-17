@@ -2,15 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background"
-    tools:context="appis.yesno.capstone.jbnu.appisapplication.Activity.LoginActivity"
-    >
+    tools:context="appis.yesno.capstone.jbnu.appisapplication.Activity.LoginActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -44,8 +43,8 @@ Car Number : "
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="12가1234"
-            android:textSize="18dp"
-            android:textColorHint="#ffffff" />
+            android:textColorHint="#ffffff"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,11 +55,11 @@ Car Number : "
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
             android:text="
 Password : "
-            android:textSize="18dp"
             android:textColor="#ffffff"
-            android:layout_marginLeft="30dp"/>
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edit_password"
@@ -69,8 +68,8 @@ Password : "
             android:layout_marginTop="10dp"
             android:hint="password"
             android:inputType="textPassword"
-            android:textSize="18dp"
-            android:textColorHint="#ffffff"/>
+            android:textColorHint="#ffffff"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,11 +80,11 @@ Password : "
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
             android:text="
 Check_password : "
-            android:textSize="18dp"
             android:textColor="#ffffff"
-            android:layout_marginLeft="30dp"/>
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edit_check_password"
@@ -94,8 +93,8 @@ Check_password : "
             android:layout_marginTop="10dp"
             android:hint="password"
             android:inputType="textPassword"
-            android:textSize="18dp"
-            android:textColorHint="#ffffff"/>
+            android:textColorHint="#ffffff"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,26 +118,26 @@ E-Mail : "
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="abc@gmail.com"
-            android:textSize="18dp"
-            android:textColorHint="#ffffff" />
+            android:textColorHint="#ffffff"
+            android:textSize="18dp" />
     </LinearLayout>
 
-    
+
     <Button
         android:id="@+id/send_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="#237598"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="#237598"
-        android:text="send number to email"/>
+        android:text="send number to email" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/edit_check_number"
@@ -146,9 +145,9 @@ E-Mail : "
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:textSize="18dp"
             android:hint="input authentication number"
-            android:textColorHint="#ffffff" />
+            android:textColorHint="#ffffff"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/Authentication"
@@ -165,8 +164,8 @@ E-Mail : "
         android:id="@+id/join_end"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:background="#235556"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="#235556"
-        android:text="JOIN"/>
+        android:text="JOIN" />
 </LinearLayout>

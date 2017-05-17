@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // 이곳이 로그인 하는곳
             sendJsonData = new SendJsonData("login", carNumber, Encrypt.encrypt_SHA1(password));
             Service service = ServiceInfo.createService(Service.class);
-            Call<ServerRequest> convertedContent = service.request_login(sendJsonData.returnJson());
+            Call<ServerRequest> convertedContent = service.request(sendJsonData.returnJson());
             convertedContent.enqueue(new Callback<ServerRequest>() {
                 @Override
                 public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
@@ -226,7 +226,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 @Override
                 public void onFailure(Call<ServerRequest> call, Throwable t) {
-                    Log.d("실패", t.getMessage().toString());
+                    Toast.makeText(getApplicationContext(), "서버연결에 실패 하였습니다.", Toast.LENGTH_LONG).show();
                 }
             });
 
