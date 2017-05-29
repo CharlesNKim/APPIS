@@ -9,7 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.JsonParser;
+
+import java.util.List;
+
 import appis.yesno.capstone.jbnu.appisapplication.GPS.GpsInfo;
+import appis.yesno.capstone.jbnu.appisapplication.HttpService.ParkingLot;
 import appis.yesno.capstone.jbnu.appisapplication.HttpService.ServerRequest;
 import appis.yesno.capstone.jbnu.appisapplication.HttpService.Service;
 import appis.yesno.capstone.jbnu.appisapplication.HttpService.ServiceInfo;
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 longitude = gpsInfo.getLatitue();
                 latitude = gpsInfo.getLogitude();
 
-                if(longitude != 0 && latitude != 0) {
+                if (longitude != 0 && latitude != 0) {
                     gpsInfo.stopGeoInfo();
                     Log.d("위치", "끔");
                 }
@@ -74,15 +79,20 @@ public class MainActivity extends AppCompatActivity {
                 convertedContent.enqueue(new Callback<ServerRequest>() {
                     @Override
                     public void onResponse(Call<ServerRequest> call, Response<ServerRequest> response) {
-                        Log.d("Response status code: ", String.valueOf(response.code()));
+                        Log.d("리지오 : ", String.valueOf(response.code()));
+                        String res = response.body().toString();
+                        Log.d("리지오", res);
 
-                        // if parsing the JSON body failed, `response.body()` returns null
+//                        // if parsing the JSON body failed, `response.body()` returns null
                         ServerRequest.USER_INFO = response.body();
-//                        Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                        if (ServerRequest.getInstance().getCarNum().equals("200")) {
-                            Log.d("SendMail", "메일 보내기 성공");
-                            Toast.makeText(getApplicationContext(), "메일을 보냈습니다.", Toast.LENGTH_LONG).show();
-                        }
+                        List tmp = ServerRequest.getInstance().getGeoInfo();
+                        ParkingLot a = (ParkingLot) tmp.get(0);
+
+                        Log.d("메세지", a.getLatitude());
+//                        if (ServerRequest.getInstance().getCarNum().equals("200")) {
+//                            Log.d("SendMail", "메일 보내기 성공");
+//                            Toast.makeText(getApplicationContext(), "메일을 보냈습니다.", Toast.LENGTH_LONG).show();
+//                        }
 
                     }
 
