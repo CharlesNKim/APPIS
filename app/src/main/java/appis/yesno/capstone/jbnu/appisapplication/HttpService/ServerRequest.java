@@ -10,7 +10,7 @@ public class ServerRequest {
 
     public volatile static ServerRequest USER_INFO;
 
-    private ServerRequest() {
+    public ServerRequest() {
 
     }
 
@@ -29,60 +29,41 @@ public class ServerRequest {
     private String passwd;
     @SerializedName("email")
     private String email;
-    @SerializedName("codeNum")
-    private String codeNum;
     @SerializedName("time")
     private String time;
     @SerializedName("fee")
-    private int fee;
-    @SerializedName("carInfo")
-    private String carInfo;
-
+    private String fee;
 
 
 
     private static ServerRequest user = null;
 
 
-    public ServerRequest(String id, String carNum, String password_digest) {
-        this.setIDENTIFY(id);
-        this.setCarNum(carNum);
-        this.setUserPassword(password_digest);
-    }
-
-    public ServerRequest(String id, String InfoCarNum, String InfoTime, int InfoFee){
-
-        this.setIDENTIFY(id);
-        this.setCarNum(InfoCarNum);
-
-    }
-
 
     public String getIDENTIFY() {
         return identify;
     }
-
     public void setIDENTIFY(String identify) {
         this.identify = identify;
     }
-
-
     public String getCarNum() {
         return carNum;
     }
-
     public void setCarNum(String userMail) {
         carNum = carNum;
     }
-
-
     public String getUserPassword() {
         return passwd;
     }
-
     public void setUserPassword(String userPassword) {
         passwd = userPassword;
     }
+
+    public String getFee(){return fee;}
+    public void  setFee(String fee){this.fee = fee;}
+    public String getTime(){return time;}
+    public void  setTime(String time){this.time = time;}
+
 
     public static ServerRequest getUser() {
         return user;

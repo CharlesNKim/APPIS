@@ -34,6 +34,7 @@
         </activity>
         <activity android:name=".Activity.JoinActivity"></activity>
         <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.CarInfoActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

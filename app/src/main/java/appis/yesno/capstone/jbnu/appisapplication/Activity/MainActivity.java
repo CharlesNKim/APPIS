@@ -1,6 +1,8 @@
 package appis.yesno.capstone.jbnu.appisapplication.Activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
                 /** carInfo를 출력하는 버튼 코드
                  *
                  */
+                try{
+                    Intent intent = new Intent(MainActivity.this, CarInfoActivity.class);
+                    //intent.putExtra("loginCarNum", intent.getStringExtra("loginCarNum"));
+                    startActivity(intent);
+
+
+                }catch (ActivityNotFoundException e){
+                    Log.i("tag01", e.toString());
+                }
+
+
 
             }
         });
@@ -79,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         // if parsing the JSON body failed, `response.body()` returns null
                         ServerRequest.USER_INFO = response.body();
 //                        Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                        if (ServerRequest.getInstance().getCarNum().equals("200")) {
+                        if (ServerRequest.USER_INFO.getCarNum().equals("200")) {
                             Log.d("SendMail", "메일 보내기 성공");
                             Toast.makeText(getApplicationContext(), "메일을 보냈습니다.", Toast.LENGTH_LONG).show();
                         }

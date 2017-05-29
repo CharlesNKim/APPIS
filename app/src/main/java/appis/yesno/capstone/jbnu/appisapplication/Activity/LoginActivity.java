@@ -3,11 +3,13 @@ package appis.yesno.capstone.jbnu.appisapplication.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -169,6 +171,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         final String carNumber = carNumberView.getText().toString();
         String password = passwordView.getText().toString();
 
+        SharedPreferences pref = getSharedPreferences("carNum", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("loginCarNum", carNumber);
+        editor.commit();
+
+
 
         boolean cancel = false;
         View focusView = null;
@@ -206,17 +214,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     // if parsing the JSON body failed, `response.body()` returns null
                     ServerRequest.USER_INFO = response.body();
-                    Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                    if (ServerRequest.getInstance().getCarNum().equals("200")) {
+                    Log.d("메세지", ServerRequest.USER_INFO.getCarNum());
+                    if (ServerRequest.USER_INFO.getCarNum().equals("200")) {
                         Log.d("TAG", "로그인 성공");
                         Toast.makeText(getApplicationContext(), "반갑습니다.", Toast.LENGTH_LONG).show();
                             /** 메인 메뉴화면으로 넘어가는 부분
                              */
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-                        Intent intent1 = new Intent(LoginActivity.this, CarInfoActivity.class);
-                        intent1.putExtra("로그인 차량번호", carNumber);
-                        startActivity(intent1);
 
                     } else {
                         Log.d("TAG", "아이디비번오류");

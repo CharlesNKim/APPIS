@@ -68,7 +68,7 @@ public class JoinActivity extends AppCompatActivity {
                         // if parsing the JSON body failed, `response.body()` returns null
                         ServerRequest.USER_INFO = response.body();
 //                        Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                        if (ServerRequest.getInstance().getCarNum().equals("200")) {
+                        if (ServerRequest.USER_INFO.getCarNum().equals("200")) {
                             Log.d("SendMail", "메일 보내기 성공");
                             Toast.makeText(getApplicationContext(), "메일을 보냈습니다.", Toast.LENGTH_LONG).show();
                         } else {
@@ -102,8 +102,8 @@ public class JoinActivity extends AppCompatActivity {
 
                         // if parsing the JSON body failed, `response.body()` returns null
                         ServerRequest.USER_INFO = response.body();
-                        Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                        if (ServerRequest.getInstance().getCarNum().equals("200")) {
+                        Log.d("메세지", ServerRequest.USER_INFO.getCarNum());
+                        if (ServerRequest.USER_INFO.getCarNum().equals("200")) {
                             Log.d("CodeCheck", "인증번호 성공");
                             Toast.makeText(getApplicationContext(), "메일 인증 성공.", Toast.LENGTH_LONG).show();
                             checkEmailCode = true;
@@ -141,8 +141,8 @@ public class JoinActivity extends AppCompatActivity {
 
                                 // if parsing the JSON body failed, `response.body()` returns null
                                 ServerRequest.USER_INFO = response.body();
-                                Log.d("메세지", ServerRequest.getInstance().getCarNum());
-                                if (ServerRequest.getInstance().getCarNum().equals("200")) {
+                                Log.d("메세지", ServerRequest.USER_INFO.getCarNum());
+                                if (ServerRequest.USER_INFO.getCarNum().equals("200")) {
                                     Toast.makeText(getApplicationContext(), "회원가입 성공.", Toast.LENGTH_LONG).show();
                                     finish();
                                 } else {
