@@ -9,6 +9,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -91,7 +93,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mMap.addMarker(new MarkerOptions().position(parkingLotMarker[i]).title("남은자리 : " + parkingLot[i].getEmptyLot()));
         }
 
-        mMap.addMarker(new MarkerOptions().position(now).title("현재위치"));
+
+        mMap.addMarker(new MarkerOptions().position(now).title("현재위치").icon(BitmapDescriptorFactory.fromResource(R.drawable.maker2)));
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
         mMap.moveCamera(zoom);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(parkingLotMarker[closeParkingLotIndex]));
