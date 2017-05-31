@@ -1,11 +1,13 @@
 package appis.yesno.capstone.jbnu.appisapplication.HttpService;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by charlesn on 2017-05-29.
  */
 
-public class ParkingLot {
+public class ParkingLot implements Serializable{
 
     @SerializedName("latitude")
     private String latitude;
