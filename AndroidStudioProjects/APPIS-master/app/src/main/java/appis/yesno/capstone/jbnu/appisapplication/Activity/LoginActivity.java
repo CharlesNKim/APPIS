@@ -223,7 +223,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     } else {
                         Log.d("TAG", "아이디비번오류");
                         Toast.makeText(getApplicationContext(), "차량번호 또는 비밀번호를 확인해 주시기바랍니다..", Toast.LENGTH_LONG).show();
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
                     }
+
                 }
 
                 @Override
