@@ -36,8 +36,6 @@ public class CarInfoActivity extends AppCompatActivity {
     private Date timeDate;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +43,6 @@ public class CarInfoActivity extends AppCompatActivity {
         carNumText = (TextView) findViewById(R.id.carNum);
         timeText = (TextView) findViewById(R.id.time);
         feeText = (TextView) findViewById(R.id.fee);
-
 
 
         SharedPreferences test = getSharedPreferences("carNum", MODE_PRIVATE);
@@ -72,21 +69,19 @@ public class CarInfoActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
                 String Time = ServerRequest.USER_INFO.getTime().replaceAll("T", "  ");
                 try {
                     timeDate = df.parse(Time);
-                    Log.d("TT",timeDate.getTime()+"");
+                    Log.d("TT", timeDate.getTime() + "");
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
                 String[] dateAndTime = Time.split("\\.");
-                String[] NowDateAndTime = today.split("\\ ");
 
                 long diff = nowDate.getTime() - timeDate.getTime();
-                long calculateTime = diff / ( 1800 * 1000 );  // 30분당 시간계산
-                long calculateFee = calculateTime * Long.parseLong(ServerRequest.USER_INFO.getFee());
+                long calculateTime = diff / (1800 * 1000);  // 30분당 시간계산
+                long calculateFee = calculateTime * Long.parseLong(ServerRequest.USER_INFO.getFee()); // 요금 계산
 
                 carNumText.setText(ServerRequest.USER_INFO.getCarNum());
                 timeText.setText(dateAndTime[0]);
