@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +32,9 @@ public class CarInfoActivity extends AppCompatActivity {
     private TextView timeText;
     private TextView feeText;
     private SendJsonData sendJsonData;
+    private Date nowDate;
+    private Date timeDate;
+
 
 
 
@@ -59,24 +63,34 @@ public class CarInfoActivity extends AppCompatActivity {
                 // if parsing the JSON body failed, `response.body()` returns null
                 ServerRequest.USER_INFO = response.body();
 
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date date = new Date();
                 String today = df.format(date);
+                try {
+                    nowDate = df.parse(today);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
                 String Time = ServerRequest.USER_INFO.getTime().replaceAll("T", "  ");
+                try {
+                    timeDate = df.parse(Time);
+                    Log.d("TT",timeDate.getTime()+"");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 String[] dateAndTime = Time.split("\\.");
-                String[] NowDateAndTime = today.split("\\  ");
+                String[] NowDateAndTime = today.split("\\ ");
 
-
-                Log.d("TT", Time);
-                Log.d("TT", dateAndTime[0]);
-                Log.d("TT", today);
-                Log.d("TT", NowDateAndTime[0]);
-                Log.d("TT", NowDateAndTime[1]);
+                long diff = nowDate.getTime() - timeDate.getTime();
+                long calculateTime = diff / ( 1800 * 1000 );  // 30분당 시간계산
+                long calculateFee = calculateTime * Long.parseLong(ServerRequest.USER_INFO.getFee());
 
                 carNumText.setText(ServerRequest.USER_INFO.getCarNum());
                 timeText.setText(dateAndTime[0]);
-                feeText.setText(ServerRequest.USER_INFO.getFee());
+                feeText.setText(Long.toString(calculateFee) + "원");
 
             }
 
