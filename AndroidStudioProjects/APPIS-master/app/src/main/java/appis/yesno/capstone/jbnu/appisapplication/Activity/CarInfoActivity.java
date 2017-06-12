@@ -30,6 +30,7 @@ public class CarInfoActivity extends AppCompatActivity {
 
     private TextView carNumText;
     private TextView timeText;
+    private TextView parkingText;
     private TextView feeText;
     private SendJsonData sendJsonData;
     private Date nowDate;
@@ -41,6 +42,7 @@ public class CarInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
         carNumText = (TextView) findViewById(R.id.carNum);
+        parkingText = (TextView) findViewById(R.id.parking_place);
         timeText = (TextView) findViewById(R.id.time);
         feeText = (TextView) findViewById(R.id.fee);
 
@@ -84,6 +86,7 @@ public class CarInfoActivity extends AppCompatActivity {
                 long calculateFee = calculateTime * Long.parseLong(ServerRequest.USER_INFO.getFee()); // 요금 계산
 
                 carNumText.setText(ServerRequest.USER_INFO.getCarNum());
+                parkingText.setText(ServerRequest.USER_INFO.getParkingLotID());
                 timeText.setText(dateAndTime[0]);
                 feeText.setText(Long.toString(calculateFee) + "원");
 

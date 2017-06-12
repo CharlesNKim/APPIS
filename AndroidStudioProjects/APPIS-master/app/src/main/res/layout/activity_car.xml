@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background">
 
 
     <View
@@ -43,6 +44,13 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:gravity="center"
+                android:text="Parking Place"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
                 android:text="time"
                 android:textStyle="bold" />
 
@@ -64,6 +72,13 @@
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 android:id="@+id/carNum"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:id="@+id/parking_place"
                 android:textStyle="bold" />
 
             <TextView

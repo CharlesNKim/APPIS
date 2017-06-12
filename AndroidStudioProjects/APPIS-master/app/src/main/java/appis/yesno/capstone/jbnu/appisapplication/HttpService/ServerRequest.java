@@ -38,6 +38,8 @@ public class ServerRequest {
     private String time;
     @SerializedName("fee")
     private String fee;
+    @SerializedName("parkingLotID")
+    private String parkingLotID;
 
     @SerializedName("geoInfo")
     private List<ParkingLot> geoInfo = null;
@@ -62,6 +64,8 @@ public class ServerRequest {
     public String getCodeNum() {
         return codeNum;
     }
+
+    public String getParkingLotID() { return  parkingLotID; }
 
     public String getTime() {
         return time;
