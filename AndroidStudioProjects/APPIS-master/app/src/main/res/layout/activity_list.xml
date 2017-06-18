@@ -1,8 +1,9 @@
+<?xml version="1.0"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="3dip"
-    android:background="@drawable/background">
+    android:background="@drawable/basic"
+    android:padding="3dip">
 
     <ImageView
         android:id="@+id/icon"
@@ -11,8 +12,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dip"
-        android:contentDescription="TODO"/>
-        <!--android:src="@drawable/sample" -->
+        android:contentDescription="TODO" />
+
+    <!--android:src="@drawable/sample" -->
 
 
     <TextView

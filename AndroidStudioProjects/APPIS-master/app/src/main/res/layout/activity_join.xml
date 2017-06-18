@@ -1,8 +1,9 @@
+<?xml version="1.0"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -15,16 +16,20 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="APPIS"
         android:textColor="#ffffff"
         android:textSize="130px"
         android:textStyle="bold" />
 
+
+    -
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
         android:orientation="horizontal">
 
         <TextView
@@ -32,20 +37,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
-            android:text="
-Car Number : "
+            android:text="Car Number : "
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edit_car_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:hint="12가1234"
             android:textColorHint="#ffffff"
             android:textSize="18dp" />
+
     </LinearLayout>
+
+
+    -
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,8 +63,8 @@ Car Number : "
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
-            android:text="
-Password : "
+            android:layout_marginTop="10dp"
+            android:text="Password : "
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
@@ -70,7 +77,11 @@ Password : "
             android:inputType="textPassword"
             android:textColorHint="#ffffff"
             android:textSize="18dp" />
+
     </LinearLayout>
+
+
+    -
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,8 +92,8 @@ Password : "
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
-            android:text="
-Check_password : "
+            android:layout_marginTop="10dp"
+            android:text="Check_password : "
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
@@ -95,7 +106,11 @@ Check_password : "
             android:inputType="textPassword"
             android:textColorHint="#ffffff"
             android:textSize="18dp" />
+
     </LinearLayout>
+
+
+    -
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,8 +122,8 @@ Check_password : "
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
-            android:text="
-E-Mail : "
+            android:layout_marginTop="10dp"
+            android:text="E-Mail : "
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
@@ -120,18 +135,23 @@ E-Mail : "
             android:hint="abc@gmail.com"
             android:textColorHint="#ffffff"
             android:textSize="18dp" />
-    </LinearLayout>
 
+    </LinearLayout>
 
     <Button
         android:id="@+id/send_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:background="#237598"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="send number to email" />
+        android:text="send number to email"
+        android:textColorHint="#ffffff"
+        android:textSize="15dp" />
+
+
+    -
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -143,8 +163,8 @@ E-Mail : "
             android:id="@+id/edit_check_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="10dp"
             android:hint="input authentication number"
             android:textColorHint="#ffffff"
             android:textSize="18dp" />
@@ -153,11 +173,13 @@ E-Mail : "
             android:id="@+id/Authentication"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:background="#933536"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="OKAY" />
+            android:text="OKAY"
+            android:textSize="15dp" />
+
     </LinearLayout>
 
     <Button
@@ -167,5 +189,7 @@ E-Mail : "
         android:background="#235556"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="JOIN" />
+        android:text=" JOIN"
+        android:textSize="15dp" />
+
 </LinearLayout>

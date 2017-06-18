@@ -41,8 +41,8 @@ public class CarInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
-        carNumText = (TextView) findViewById(R.id.carNum);
         parkingText = (TextView) findViewById(R.id.parking_place);
+        carNumText = (TextView) findViewById(R.id.CarNum);
         timeText = (TextView) findViewById(R.id.time);
         feeText = (TextView) findViewById(R.id.fee);
 
@@ -85,8 +85,8 @@ public class CarInfoActivity extends AppCompatActivity {
                 long calculateTime = diff / (1800 * 1000);  // 30분당 시간계산
                 long calculateFee = calculateTime * Long.parseLong(ServerRequest.USER_INFO.getFee()); // 요금 계산
 
-                carNumText.setText(ServerRequest.USER_INFO.getCarNum());
                 parkingText.setText(ServerRequest.USER_INFO.getParkingLotID());
+                carNumText.setText(ServerRequest.USER_INFO.getCarNum());
                 timeText.setText(dateAndTime[0]);
                 feeText.setText(Long.toString(calculateFee) + "원");
 
