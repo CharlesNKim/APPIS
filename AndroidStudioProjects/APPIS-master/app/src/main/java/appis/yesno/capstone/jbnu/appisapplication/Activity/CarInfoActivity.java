@@ -35,6 +35,7 @@ public class CarInfoActivity extends AppCompatActivity {
     private SendJsonData sendJsonData;
     private Date nowDate;
     private Date timeDate;
+    private long diff;
 
 
     @Override
@@ -72,16 +73,22 @@ public class CarInfoActivity extends AppCompatActivity {
                 }
 
                 String Time = ServerRequest.USER_INFO.getTime().replaceAll("T", "  ");
-                try {
-                    timeDate = df.parse(Time);
-                    Log.d("TT", timeDate.getTime() + "");
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                Log.d("tq", Time);
+                String[] dateAndTime = Time.split("\\.");
+                if (Time.equals("-")) {
+                    diff = nowDate.getTime();
+
+                } else {
+
+                    try {
+                        timeDate = df.parse(Time);
+                        Log.d("TT", timeDate.getTime() + "");
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    diff = nowDate.getTime() - timeDate.getTime();
                 }
 
-                String[] dateAndTime = Time.split("\\.");
-
-                long diff = nowDate.getTime() - timeDate.getTime();
                 long calculateTime = diff / (1800 * 1000);  // 30분당 시간계산
                 long calculateFee = calculateTime * Long.parseLong(ServerRequest.USER_INFO.getFee()); // 요금 계산
 
